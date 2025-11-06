@@ -1,0 +1,19 @@
+[Unit]
+Description=VMess/Hysteria2 Proxy Server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/proxy-server
+ExecStart=/usr/bin/java -Xms256M -Xmx512M -jar /opt/proxy-server/server.jar
+Restart=on-failure
+RestartSec=10s
+StandardOutput=journal
+StandardError=journal
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
